@@ -50,6 +50,7 @@ class Scene3D : public QOpenGLWidget, protected QOpenGLFunctions
     void translate_right();
 
     void drawArrow();
+    void drawAxisSegment();
     void drawAxis();
     void defaultScene();
     void drawFigure();

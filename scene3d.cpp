@@ -239,6 +239,7 @@ void Scene3D::paintGL()
    glRotatef(zRot, 0.0f, 0.0f, 1.0f);
 
    drawAxis();
+   drawAxisSegment();
    if (this->flag_arr) drawArrow();
    drawFigure();
 }
@@ -247,10 +248,49 @@ void Scene3D::paintGL()
     \brief Drawing of axis
 
 */
-/*void Scene3D::drawAxisSegment()
+void Scene3D::drawAxisSegment()
 {
+    glLineWidth(3.0f);
 
-}*/
+    GLfloat a = 0.02f;
+    glBegin(GL_LINES);
+        glColor4f(1.00f, 0.00f, 0.00f, 1.0f);
+        for(int i = -10; i < 11; i++){
+            if(i!=0){
+                glVertex3f( i*0.1f,  0.0f,  a);
+                glVertex3f( i*0.1f,  0.0f,  -a);
+            }
+        }
+
+        glColor4f(0.00f, 1.00f, 0.00f, 1.0f);
+        for(int i = -10; i < 11; i++){
+            if(i!=0){
+                glVertex3f( a,  i*0.1f,  0.0f);
+                glVertex3f( -a,  i*0.1f,  0.0f);
+            }
+        }
+
+        glColor4f(0.00f, 0.00f, 1.00f, 1.0f);
+        for(int i = -10; i < 11; i++){
+            if(i!=0){
+                glVertex3f( a,  0.0f,  i*0.1f);
+                glVertex3f( -a,  0.0f, i*0.1f);
+            }
+        }
+    glEnd();
+
+    QColor halfGreen(0, 128, 0, 255);
+    initializeOpenGLFunctions();
+    glColor4f(0.00f, 1.00f, 0.00f, 1.0f);
+    glBegin(GL_LINES);
+       glVertex3f( 0.0f,  1.0f,  0.0f);
+       glVertex3f( 0.0f, -1.0f,  0.0f);
+
+       glColor4f(0.00f, 0.00f, 1.00f, 1.0f);
+       glVertex3f( 0.0f,  0.0f,  1.0f);
+       glVertex3f( 0.0f,  0.0f, -1.0f);
+    glEnd();
+}
 void Scene3D::drawAxis()
 {
    glLineWidth(3.0f);
